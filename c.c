@@ -6,7 +6,7 @@
 int main(int argc, char** argv) {
 	int connfd;
 	int rev_len;
-	char sendline[MAX];
+	char sendline[MAX], recvmsg[MAX];
 	if(argc < 3){
 		printf("usage: ./c <ipaddress> <port>\n");
 		return 0;
@@ -21,9 +21,9 @@ int main(int argc, char** argv) {
 		if(rev_len<1){
 			break;
 		}
-		memset(&sendline, 0, sizeof(sendline));
-		ryan_client_recv(connfd, sendline,  MAX);
-		printf("Rev:%s", sendline);
+		memset(&recvmsg, 0, sizeof(recvmsg));
+		ryan_client_recv(connfd, recvmsg,  MAX);
+		printf("Rev:%s", recvmsg);
 	}
 	ryan_client_close(connfd);
 	return 0;
