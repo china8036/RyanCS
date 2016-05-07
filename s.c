@@ -9,8 +9,12 @@ int main(void) {
 	int max = 100, rev_len;
 
 	listenfd = ryan_server_start(6666, 10);
-	connfd = ryan_server_accept(listenfd);
-	rev_len = ryan_server_rev(connfd, rev, max);
+	if(listenfd != -1){
+		connfd = ryan_server_accept(listenfd);
+	}
+	if(connfd > -1){
+		rev_len = ryan_server_rev(connfd, rev, max);
+	}
 	if (rev_len == -1) {
 		printf("rev error\n");
 		return 0;
@@ -19,7 +23,7 @@ int main(void) {
 	ryan_server_close(listenfd, connfd);
 	return 0;
 }
-void ryan_deal_listen_err(int err_no) {
+void ryan_server_listen_err(int err_no) {
 }
 void ryan_server_accept_error(int err_no) {
 }
