@@ -16,7 +16,6 @@ int ryan_client_connect(char *ser_ip, short int ser_port) {
 		ryan_client_connect_err(errno);
 		return -1;
 	}
-
 	memset(&servaddr, 0, sizeof(servaddr));
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_port = htons(ser_port);

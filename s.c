@@ -3,12 +3,15 @@
 #include "ryan_s.c"
 #endif /* RYAN_CS_H_ */
 
-int main(void) {
+int main(int argc, char** argv) {
 	int listenfd, connfd;
 	char rev[100];
 	int max = 100, rev_len;
-
-	listenfd = ryan_server_start(6666, 10);
+	if(argc < 2){
+		printf("usage: ./s <port>\n");
+		return 0;
+	}
+	listenfd = ryan_server_start(atoi(argv[1]), 10);
 	if(listenfd != -1){
 		connfd = ryan_server_accept(listenfd);
 	}
