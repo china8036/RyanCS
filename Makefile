@@ -1,2 +1,2 @@
-cs:ryan_cs.h ryan_cs.c cs.c
-	gcc cs.c -o cs -include ryan_cs.h ryan_cs.c
+s:ryan_cs.h ryan_s.c s.c
+	gcc s.c -o s -include ryan_cs.h ryan_s.c

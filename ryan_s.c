@@ -3,6 +3,10 @@
 #include "ryan_cs.h"
 #endif /* RYAN_CS_H_ */
 
+void ryan_deal_listen_err(int err_no);
+void ryan_server_before_accept(void);
+void ryan_server_after_accept(int listenfd);
+void ryan_server_accept_error(int err_no);
 int ryan_server_start(short int port, int wait_num) {
 	int listenfd;
 	struct sockaddr_in servaddr;
