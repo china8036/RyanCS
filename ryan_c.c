@@ -38,6 +38,10 @@ void ryan_client_send(int sockfd, char * msg) {
 	}
 }
 
+int ryan_client_recv(int sockfd, void * msg, size_t len) {
+	return recv(sockfd, msg, len, 0);
+}
+
 void ryan_client_close(int sockfd) {
 	if (sockfd != -1) {
 		close(sockfd);

@@ -46,11 +46,15 @@ int ryan_server_accept(int listenfd) {
 
 }
 
-int ryan_server_rev(int connfd, char* buff, int max) {
+int ryan_server_recv(int connfd, char* buff, int max) {
 	int n;
 	n = recv(connfd, buff, max, 0);
 	buff[n] = '\0';
 	return n;
+}
+
+int ryan_server_send(int connfd, char * msg) {
+	return send(connfd, msg, strlen(msg), 0);
 }
 
 int ryan_server_close(int listenfd, int connfd) {
