@@ -4,7 +4,7 @@
 #endif /* RYAN_CS_H_ */
 #define MAX 1024
 int main(int argc, char** argv) {
-	int connfd;
+	int connfd,recv_len;
 	int rev_len;
 	char sendline[MAX], recvmsg[MAX];
 	if(argc < 3){
@@ -18,11 +18,15 @@ int main(int argc, char** argv) {
 		printf("Send:");
 		fgets(sendline, MAX, stdin);
 		rev_len = ryan_client_send(connfd, sendline);
-		if(rev_len<1){
+		if(rev_len == -1){
+			printf("send fail:%s\n", strerror(errno));
 			break;
 		}
 		memset(&recvmsg, 0, sizeof(recvmsg));
-		ryan_client_recv(connfd, recvmsg,  MAX);
+		recv_len = ryan_client_recv(connfd, recvmsg,  MAX);
+		if(recv_len == -1){
+			printf("rev error:%s\n", strerror(errno));
+		}
 		printf("Rev:%s", recvmsg);
 	}
 	ryan_client_close(connfd);

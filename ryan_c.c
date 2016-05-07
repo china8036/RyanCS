@@ -30,12 +30,8 @@ int ryan_client_connect(char *ser_ip, short int ser_port) {
 	return sockfd;;
 }
 
-void ryan_client_send(int sockfd, char * msg) {
-	if (send(sockfd, msg, strlen(msg), 0) < 0) {
-		ryan_client_send_fail(msg);
-	} else {
-		ryan_client_send_suc(msg);
-	}
+int ryan_client_send(int sockfd, char * msg) {
+	return send(sockfd, msg, strlen(msg), 0);
 }
 
 int ryan_client_recv(int sockfd, void * msg, size_t len) {
